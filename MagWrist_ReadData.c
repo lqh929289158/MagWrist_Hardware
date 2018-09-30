@@ -138,8 +138,6 @@ void UARTStringPut(const char *);
 
 void S800_UART_Init(void);
 
-void S800_I2C0_Init(void);
-
 //------
 void S800_I2C_Init(uint16_t);	//I2C_Enable_Mask
 
