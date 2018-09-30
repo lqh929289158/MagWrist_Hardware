@@ -1,0 +1,17 @@
+.\objects\magwrist_readdata.o: MagWrist_ReadData.c
+.\objects\magwrist_readdata.o: D:\Magnet_WristBand\Hardware\Keil\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\magwrist_readdata.o: D:\Magnet_WristBand\Hardware\Keil\ARM\ARMCC\Bin\..\include\stdbool.h
+.\objects\magwrist_readdata.o: .\inc\hw_memmap.h
+.\objects\magwrist_readdata.o: .\driverlib\debug.h
+.\objects\magwrist_readdata.o: .\driverlib\gpio.h
+.\objects\magwrist_readdata.o: .\inc\hw_i2c.h
+.\objects\magwrist_readdata.o: .\inc\hw_types.h
+.\objects\magwrist_readdata.o: .\inc\hw_gpio.h
+.\objects\magwrist_readdata.o: .\driverlib\i2c.h
+.\objects\magwrist_readdata.o: .\driverlib\pin_map.h
+.\objects\magwrist_readdata.o: .\driverlib\sysctl.h
+.\objects\magwrist_readdata.o: .\inc\hw_sysctl.h
+.\objects\magwrist_readdata.o: .\driverlib\uart.h
+.\objects\magwrist_readdata.o: .\inc\hw_ints.h
+.\objects\magwrist_readdata.o: .\driverlib\systick.h
+.\objects\magwrist_readdata.o: .\driverlib\interrupt.h
