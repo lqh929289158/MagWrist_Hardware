@@ -20,6 +20,31 @@ Keil.TM4C_DFP.1.1.0.pack | Tiva C Series device support and examples
 SW-EK-TM4C1294XL-2.1.4.178.exe | Firmware development package setup
 uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
 
+## About TI Cortex-M4 Embedded Board
+
+(Picture here)
+(The head files and functions defined outside of **MagWrist_ReadData.c** is provided by Prof. Wei Liu _SJTU_.)
+
+## About magnetometer HMC5983
+
+(Photo here)
+(Data sheet)
+
+
+## About motion sensor  MPU9250
+
+(Photo here)
+(Data sheet)
+
+## Magnetometer Array
+
+(Photo here)
+(Support by Prof. Hao He _SJTU_.)
+
+## System Architecture
+
+(Figure Here)
+
 ## Test the hardware program
 
 1. Download this repository to your PC.
