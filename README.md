@@ -109,6 +109,9 @@ PP4 | PK3 |  | PH1 | PP3
 33. Sensor-9 SDA
 34. Sensor-9 SCL
 35. GND
+36. N/A
+37. N/A
+38. N/A
 39. 5V
 40. 5V
 
