@@ -23,7 +23,16 @@ uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
 ## About TI Cortex-M4 Embedded Board
 
 (Picture here)
+
 (The head files and functions defined outside of **MagWrist_ReadData.c** is provided by Prof. Wei Liu _SJTU_.)
+
+The pins on the front side is enough(**Boosterpack 1 and 2** written in white).
+
+xxxx | Debug port | xxxx | xxxx | xxxx    
+---- | ---------- | ---- | ---- | ----
+3.3V | 5V |  | PF1 | GND
+PE4 | GND |  | PF2 | PM3
+PC4 | PE0 |  | PF3 | PH2
 
 ## About magnetometer HMC5983
 
