@@ -33,6 +33,24 @@ xxxx | Debug port | xxxx | xxxx | xxxx
 3.3V | 5V |  | PF1 | GND
 PE4 | GND |  | PF2 | PM3
 PC4 | PE0 |  | PF3 | PH2
+PC5 | PE1 |  | PG0(I2C1 SCL) | PH3
+PC6 | PE2 |  | PL4 | ~RST 
+PE5 | PE3 |  | PL5 | PD1(I2C7' SDA)
+PD3(I2C8' SDA) | PD7 |  | PL0(I2C2' SDA) | PD0(I2C7' SCL)
+PC7 | PA6(I2C6 SCL) |  | PL1(I2C2' SCL) | PN2
+PB2(I2C0 SCL) | PM4 |  | PL2 | PN3
+PB3(I2C0 SDA) | PM5 |  | PL3 | PP2
+ ~ | ~ | ~ | ~ | ~
+3.3V | 5V |  | PG1(I2C1 SDA) | GND
+PD2(I2C8' SCL) | GND |  | PK4(I2C3 SCL) | PM7
+PP0 | PB4(I2C5 SCL) |  | PK5(I2C3 SDA) | PP5
+PP1 | PB5(I2C5 SDA) |  | PM0 | PA7(I2C6 SDA)
+JP4(PD4/PA0(I2C9 SCL)) | PK0 |  | PM1 | ~RESET
+JP5(PD5/PA1(I2C9 SDA)) | PK1 |  | PM2 | PQ2/PA3(I2C8 SCL)
+PQ0 | PK2 |  | PH0 | PQ3/PA2(I2C8 SDA)
+PP4 | PK3 |  | PH1 | PP3
+PN5(I2C2 SCL) | PA4(I2C7 SCL) |  | PK6(I2C4 SCL) | PQ1
+PN4(I2C2 SDA) | PA5(I2C7 SDA) |  | PK7(I2C4 SDA) | PM6
 
 ## About magnetometer HMC5983
 
