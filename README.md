@@ -200,6 +200,31 @@ Now you can receive data on your PC if you know how to read data from serial por
 
 If you have no idea, please refer to **Software** part of this project.
 
+## Resolution Configuration
+
+You can configure the resolution of the magnetometers(HMC5983). Higher the resolution you set, more sensitive the sensor is, smaller the range is. HMC5983 has 8 levels of resolution, which controlled by three higher bits of **Configuration B Register**. If you want to change the resolution, follow the steps below:
+
+1. Open **MagWrist_ReadData.c** in Keil(or other editor).
+2. Search for the function **HMC5983_Config**.
+
+3. You can find this line:
+'''
+I2C_WriteByte(I2C_Num,HMC5983_ADDRESS,HMC5983_CONFIG_B,0xE0);
+'''
+
+4. You can replace the hex according to the table below:
+
+Hex | Range | Digtal Resolution(mGauss/LSb) | Output Number Range
+--- | ----- | ----------------------------- | -------------------
+0x00 | -0.88 ~ +0.88 Gauss | 0.73 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0x20 | -1.30 ~ +1.30 Gauss | 0.92 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0x40 | -1.90 ~ +1.90 Gauss | 1.22 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0x60 | -2.50 ~ +2.50 Gauss | 1.52 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0x80 | -4.00 ~ +4.00 Gauss | 2.27 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0xA0 | -4.70 ~ +4.70 Gauss | 2.56 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0xC0 | -5.60 ~ +5.60 Gauss | 3.03 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+0xE0 | -8.10 ~ +8.10 Gauss | 4.35 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+
 ## Notification
 
 The head files and functions defined except **MagWrist_ReadData.c** are provided by Prof. Wei Liu _Shanghai Jiaotong University_.
