@@ -22,7 +22,7 @@ uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
 
 ## About TI Cortex-M4 Embedded Board
 
-(Picture here)
+![Cortex-M4 TM4C1294XL](Figures/TM4C1294NCPDTI.png)
 
 You can refer to Cortex-M4 [TM4C1294XL LaunchPad User Guide](http://www.ti.com/lit/ug/spmu365c/spmu365c.pdf)
 
