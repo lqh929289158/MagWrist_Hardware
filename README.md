@@ -31,8 +31,6 @@ One of the 10 I2C masters is also used to drive the motion sensor, since the dev
 
 You can refer to Cortex-M4 [TM4C1294XL LaunchPad User Guide](http://www.ti.com/lit/ug/spmu365c/spmu365c.pdf)
 
-(The head files and functions defined outside of **MagWrist_ReadData.c** is provided by Prof. Wei Liu _SJTU_.)
-
 ### Map of I2C Master to pins on the embedded board
 
 The pins on the front side is enough(**Boosterpack 1 and 2** written in white).
@@ -87,11 +85,12 @@ For more details, you can refer to the [product specification](https://www.inven
 
 ## Magnetometer Array
 
-Map of Pins of magnetometer array
+### Map of sensors on the Magnetometer Array
 
 ![Map of magetometer array)](Figures/MagArray.JPG)
 
-(Supported by Prof. Hao He _SJTU_.)
+
+### Map of Pins of magnetometer array
 
 Pins of magnetometer from up to down.
 
@@ -186,5 +185,8 @@ X_Axis_Data Y_Axis_Data Z_Axis_Data 9
 /* MPU9250 Part */
 Acc_X Acc_Y Acc_Z Gyr_X Gyr_Y Gyr_Z  0
 ```
+## Notification
 
+The head files and functions defined except **MagWrist_ReadData.c** are provided by Prof. Wei Liu _Shanghai Jiaotong University_.
 
+The printed circuit board(Magnetometer Array) is designed and made by Prof. Hao He _Shanghai Jiaotong University_, supported by Prof. Hongzi Zhu _Shanghai Jiaotong University_.
