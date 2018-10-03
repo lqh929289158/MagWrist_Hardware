@@ -8,18 +8,6 @@ The program of the system has two parts: Hardware(Embedded Board) and Software(P
 
 This README _Only_ talks about **HARDWARE** part.
 
-## Install Keil(TI Cortex-M4 Development Environment)
-
-Due to the problem of copyright. Ask your professor for the installation program, which may contains 5 files.
-
-Installation program name | Details
-------------------------- | -------
-MDK522.EXE | The main setup file of Keil 5.22
-MDKCM522.EXE | The setup file for Keil legacy devices
-Keil.TM4C_DFP.1.1.0.pack | Tiva C Series device support and examples
-SW-EK-TM4C1294XL-2.1.4.178.exe | Firmware development package setup
-uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
-
 ## Overview
 
 We use an embedded board to read data from magnetometer and motion-sensor chip by I2C protocol.
@@ -99,7 +87,7 @@ For more details, you can refer to the [product specification](https://www.inven
 
 ## Magnetometer Array
 
-### Map of Pins of magnetometer array
+Map of Pins of magnetometer array
 
 ![Map of magetometer array)](Figures/MagArray.JPG)
 
@@ -148,12 +136,23 @@ Pins of magnetometer from up to down.
 39. 5V
 40. 5V
 
-
 ## System Architecture
 
 Connect 10 I2C masters to 10 magnetometers. Connect one of the 10 I2C masters to 1 motion-sensor.
 
 ![System_Scheme](Figures/System_Scheme.png)
+
+## Install Keil(TI Cortex-M4 Development Environment)
+
+Due to the problem of copyright. Ask your professor for the installation program, which may contains 5 files.
+
+Installation program name | Details
+------------------------- | -------
+MDK522.EXE | The main setup file of Keil 5.22
+MDKCM522.EXE | The setup file for Keil legacy devices
+Keil.TM4C_DFP.1.1.0.pack | Tiva C Series device support and examples
+SW-EK-TM4C1294XL-2.1.4.178.exe | Firmware development package setup
+uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
 
 ## Test the hardware program
 
