@@ -208,9 +208,9 @@ You can configure the resolution of the magnetometers(HMC5983). Higher the resol
 2. Search for the function **HMC5983_Config**.
 
 3. You can find this line:
-'''
+```
 I2C_WriteByte(I2C_Num,HMC5983_ADDRESS,HMC5983_CONFIG_B,0xE0);
-'''
+```
 
 4. You can replace the hex according to the table below:
 
@@ -224,6 +224,8 @@ Hex | Range | Digtal Resolution(mGauss/LSb) | Output Number Range
 0xA0 | -4.70 ~ +4.70 Gauss | 2.56 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
 0xC0 | -5.60 ~ +5.60 Gauss | 3.03 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
 0xE0 | -8.10 ~ +8.10 Gauss | 4.35 | 0xF800 ~ 0x07FF(-2048 ~ 2047)
+
+5. Rebuild and download.
 
 ## Notification
 
