@@ -24,6 +24,8 @@ uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
 
 (Picture here)
 
+You can refer to Cortex-M4 [TM4C1294XL LaunchPad User Guide](http://www.ti.com/lit/ug/spmu365c/spmu365c.pdf)
+
 (The head files and functions defined outside of **MagWrist_ReadData.c** is provided by Prof. Wei Liu _SJTU_.)
 
 ### Map of I2C Master to pins on the embedded board
@@ -58,13 +60,16 @@ PP4 | PK3 |  | PH1 | PP3
 ## About magnetometer HMC5983
 
 (Photo here)
-(Data sheet)
+
+You can refer to the data sheet of HMC5983 [here](https://aerocontent.honeywell.com/aero/common/documents/myaerospacecatalog-documents/Defense_Brochures-documents/HMC5983_3_Axis_Compass_IC.pdf)
 
 
 ## About motion sensor  MPU9250
 
 (Photo here)
 (Data sheet)
+
+You can refer to the [product specification](https://www.invensense.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf) and [Register map](http://www.invensense.com/wp-content/uploads/2017/11/RM-MPU-9250A-00-v1.6.pdf)
 
 ## Magnetometer Array
 
