@@ -74,6 +74,8 @@ PP4 | PK3 |  | PH1 | PP3
 
 (Support by Prof. Hao He _SJTU_.)
 
+Pins of magnetometer from up to down.
+
 1. GND
 2. Sensor-0 SDA
 3. Sensor-0 SCL
@@ -139,4 +141,18 @@ PP4 | PK3 |  | PH1 | PP3
    3. If you have no idea, ask your professor.
 6. Ready to download the program to your embedded board.
       
+## Output format
+
+```
+/* HMC5983 Part */
+X_Axis_Data Y_Axis_Data Z_Axis_Data 0
+X_Axis_Data Y_Axis_Data Z_Axis_Data 1
+X_Axis_Data Y_Axis_Data Z_Axis_Data 2
+X_Axis_Data Y_Axis_Data Z_Axis_Data 3
+...
+X_Axis_Data Y_Axis_Data Z_Axis_Data 9
+/* MPU9250 Part */
+Acc_X Acc_Y Acc_Z Gyr_X Gyr_Y Gyr_Z  0
+```
+
 
