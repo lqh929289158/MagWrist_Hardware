@@ -20,6 +20,23 @@ Keil.TM4C_DFP.1.1.0.pack | Tiva C Series device support and examples
 SW-EK-TM4C1294XL-2.1.4.178.exe | Firmware development package setup
 uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
 
+## Overview
+
+We use an embedded board to read data from magnetometer and motion-sensor chip by I2C protocol.
+
+If you are not familiar with I2C, we strongly recommend you to learn about it.
+
+Embedded board:__TI Cortex-M4 TM4C1294XL LaunchPad__
+
+Magnetometer: __HMC5983__
+
+Motion sensor: __MPU9250__
+
+10 I2C masters are used to drive 10 magnetometers.
+
+One of the 10 I2C masters is also used to drive the motion sensor, since the device addresses of motion-sensor and magenetometer are different, so there is no conflict.
+
+
 ## About TI Cortex-M4 Embedded Board
 
 ![Cortex-M4 TM4C1294XL](Figures/TM4C1294NCPDTI.png)
@@ -59,25 +76,34 @@ PP4 | PK3 |  | PH1 | PP3
 
 ## About magnetometer HMC5983
 
-(Photo here)
+HMC5983 is a 3-Axis magnetometer chip made by Honeywell, which is very cheap and sensitive to magnetic field.
 
-You can refer to the data sheet of HMC5983 [here](https://aerocontent.honeywell.com/aero/common/documents/myaerospacecatalog-documents/Defense_Brochures-documents/HMC5983_3_Axis_Compass_IC.pdf)
+To get started with it. The pin-map and scheme-map below may help you.
+
+![HMC5983_ChipPin](Figures/HMC5983_ChipPin.png)
+
+![HMC5983_Scheme](Figures/HMC5983_Scheme.png)
+
+For more details, you can refer to the data sheet of HMC5983 [here](https://aerocontent.honeywell.com/aero/common/documents/myaerospacecatalog-documents/Defense_Brochures-documents/HMC5983_3_Axis_Compass_IC.pdf)
 
 
 ## About motion sensor  MPU9250
 
-(Photo here)
-(Data sheet)
+MPU9250 is a 6-Axis motion sensor chip made by InvenSense, which also include a magentometer.
 
-You can refer to the [product specification](https://www.invensense.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf) and [Register map](http://www.invensense.com/wp-content/uploads/2017/11/RM-MPU-9250A-00-v1.6.pdf)
+To get started with it, the Scheme-map below may help you.
+
+![MPU9250_Scheme](Figures/MPU9250_Scheme.png)
+
+For more details, you can refer to the [product specification](https://www.invensense.com/wp-content/uploads/2015/02/PS-MPU-9250A-01-v1.1.pdf) and [Register map](http://www.invensense.com/wp-content/uploads/2017/11/RM-MPU-9250A-00-v1.6.pdf)
 
 ## Magnetometer Array
 
 ### Map of Pins of magnetometer array
 
-(Photo here about magnetometer Array and Map of position of sensors)
+![Map of magetometer array)](Figures/MagArray.JPG)
 
-(Support by Prof. Hao He _SJTU_.)
+(Supported by Prof. Hao He _SJTU_.)
 
 Pins of magnetometer from up to down.
 
@@ -125,7 +151,9 @@ Pins of magnetometer from up to down.
 
 ## System Architecture
 
-(Figure Here)
+Connect 10 I2C masters to 10 magnetometers. Connect one of the 10 I2C masters to 1 motion-sensor.
+
+![System_Scheme](Figures/System_Scheme.png)
 
 ## Test the hardware program
 
