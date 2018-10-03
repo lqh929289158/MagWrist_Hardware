@@ -173,6 +173,10 @@ uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
       4. Click **C/C++** and check **Include Paths**  is `.\inc;.\driverlib_`.
    3. If you have no idea, ask your professor.
 6. Connect embedded board by USB and download the program into your embedded board.
+7. If you have some problem with downloading, please right click on the **Target1** on the left side and click **Options for Target 'Target 1' ...**. Choose **Debug** and follow the pictures below and try again:
+
+![Debug_Download](Figures/Debug_Download.png)
+8. If you still have some problems, please ask your professor. :)
       
 ## Output format
 
