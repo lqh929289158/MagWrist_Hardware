@@ -20,9 +20,11 @@ Magnetometer: __HMC5983__
 
 Motion sensor: __MPU9250__
 
-10 I2C masters are used to drive 10 magnetometers.
+10 I2C masters are used to drive 10 magnetometers and load data from magnetometers in sequence.
 
 One of the 10 I2C masters is also used to drive the motion sensor, since the device addresses of motion-sensor and magenetometer are different, so there is no conflict.
+
+Then the data loaded from sensors will be transferred to __Serial Port__ by __UART__ in format.
 
 
 ## About TI Cortex-M4 Embedded Board
@@ -170,9 +172,13 @@ uniflash_sl.4.1.1250.exe | Uniflash setup(Maybe no use)
       3. Click **Device** and check you have chosen **TM4C1294NCPDT**.
       4. Click **C/C++** and check **Include Paths**  is `.\inc;.\driverlib_`.
    3. If you have no idea, ask your professor.
-6. Ready to download the program to your embedded board.
+6. Connect embedded board by USB and download the program into your embedded board.
       
 ## Output format
+
+The data loaded will be translated into ASCII and transferred to Serial Port by UART.
+
+The format is as follows:
 
 ```
 /* HMC5983 Part */
@@ -185,6 +191,11 @@ X_Axis_Data Y_Axis_Data Z_Axis_Data 9
 /* MPU9250 Part */
 Acc_X Acc_Y Acc_Z Gyr_X Gyr_Y Gyr_Z  0
 ```
+
+Now you can receive data on your PC if you know how to read data from serial port of your PC.
+
+If you have no idea, please refer to **Software** part of this project.
+
 ## Notification
 
 The head files and functions defined except **MagWrist_ReadData.c** are provided by Prof. Wei Liu _Shanghai Jiaotong University_.
