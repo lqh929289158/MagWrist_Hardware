@@ -21,10 +21,10 @@
 #define MY_FREQUENCY 5 //Sampling rate 5HZ
 
 //*******************************lqh*******************************************
-#define SMPLRT_DIV		0x19 //ÍÓÂİÒÇ²ÉÑùÂÊ£¬µäĞÍÖµ£º0x07£¨125HZ£©
-#define CONFIG				0x1A //µÍÍ¨ÂË²¨ÆµÂÊ£¬µäĞÍÖµ£º0x06£¨5Hz£©
-#define GYRO_CONFIG		0x1B //ÍÓÂİÒÇ×Ô¼ì¼°²âÁ¿·¶Î§£¬µäĞÍÖµ£º0x18£¨²»×Ô¼ì£¬2000deg/s£©
-#define ACCEL_CONFIG	0x1C //¼ÓËÙ¼Æ×Ô¼ì£¬²âÁ¿·¶Î§¼°¸ßÍ¨ÂË²¨ÆµÂÊ£¬µäĞÍÖµ£º0x01£¨²»×Ô¼ì£¬2G£¬5Hz£©
+#define SMPLRT_DIV		0x19 //é™€èºä»ªé‡‡æ ·ç‡ï¼Œå…¸å‹å€¼ï¼š0x07ï¼ˆ125HZï¼‰
+#define CONFIG				0x1A //ä½é€šæ»¤æ³¢é¢‘ç‡ï¼Œå…¸å‹å€¼ï¼š0x06ï¼ˆ5Hzï¼‰
+#define GYRO_CONFIG		0x1B //é™€èºä»ªè‡ªæ£€åŠæµ‹é‡èŒƒå›´ï¼Œå…¸å‹å€¼ï¼š0x18ï¼ˆä¸è‡ªæ£€ï¼Œ2000deg/sï¼‰
+#define ACCEL_CONFIG	0x1C //åŠ é€Ÿè®¡è‡ªæ£€ï¼Œæµ‹é‡èŒƒå›´åŠé«˜é€šæ»¤æ³¢é¢‘ç‡ï¼Œå…¸å‹å€¼ï¼š0x01ï¼ˆä¸è‡ªæ£€ï¼Œ2Gï¼Œ5Hzï¼‰
 
 #define GYRO_ADDRESS		0x68 //7 bit b1101000
 #define ACCEL_ADDRESS	0x68 //7 
@@ -56,8 +56,8 @@
 #define MAG_ZOUT_H		0x08
 
 
-#define	PWR_MGMT_1		0x6B	//µçÔ´¹ÜÀí£¬µäĞÍÖµ£º0x00(Õı³£ÆôÓÃ)
-#define	WHO_AM_I		  0x75	//IICµØÖ·¼Ä´æÆ÷(Ä¬ÈÏÊıÖµ0x68£¬Ö»¶Á)
+#define	PWR_MGMT_1		0x6B	//ç”µæºç®¡ç†ï¼Œå…¸å‹å€¼ï¼š0x00(æ­£å¸¸å¯ç”¨)
+#define	WHO_AM_I		  0x75	//IICåœ°å€å¯„å­˜å™¨(é»˜è®¤æ•°å€¼0x68ï¼Œåªè¯»)
 
 //*******************************lqh*******************************************
 
@@ -123,8 +123,8 @@ uint8_t I2C_WriteByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr, uint8_t Wri
 uint8_t I2C_ReadByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr);
 //--------
 void Read_Accel(int); 	//for MPU9250, input:I2C_Num
-void Read_Gyro(int);		//for MPU9250, input:I2C_Num
-void Read_Mag(int);			//for MPU9250, input:I2C_Num
+void Read_Gyro(int);	//for MPU9250, input:I2C_Num
+void Read_Mag(int);	//for MPU9250, input:I2C_Num
 void MPU9250_Read(int);	//Read data from MPU9250 to agm and convert to numTrans
 
 void TCA6424_Config(int);	//for TCA6424, input: I2C_Num
@@ -138,16 +138,14 @@ void UARTStringPut(const char *);
 
 void S800_UART_Init(void);
 
-void S800_I2C0_Init(void);
-
 //------
-void S800_I2C_Init(uint16_t);//I2C_Enable_Mask
+void S800_I2C_Init(uint16_t);	//I2C_Enable_Mask
 
-void MPU9250_Config(int);//MPU9250 Config,input I2C_Num
+void MPU9250_Config(int);	//MPU9250 Config,input I2C_Num
 
-void HMC5983_Config(int);//HMC5983 Config,input I2C_Num
+void HMC5983_Config(int);	//HMC5983 Config,input I2C_Num
 
-void HMC5983_Read(int);	//HMC5983 read data, input I2C_Num
+void HMC5983_Read(int);		//HMC5983 read data, input I2C_Num
 
 //------
 
@@ -165,25 +163,25 @@ short A_X,A_Y,A_Z;
 short M_X,M_Y,M_Z;
 
 
-short agm[9]; //temperary variable to store data
+short agm[9];				//temperary variable to store data
 uint32_t cnt=0;
 uint8_t led=0xff;
-uint16_t I2C_Enable_Mask=0x12FF;//I2C [0,1,2,3 | 4,5,6,7| 8 9 2' 7'| 8']
+uint16_t I2C_Enable_Mask=0x12FF;	//I2C [0,1,2,3 | 4,5,6,7| 8 9 2' 7'| 8']
 //--------
 
 uint32_t mycnt=0;
 
 volatile uint16_t systick_10ms_couter,systick_myfreq_couter;
-volatile uint8_t	systick_10ms_status,systick_myfreq_status;
+volatile uint8_t systick_10ms_status,systick_myfreq_status;
 
 int led_status = 0;
 int main(void)
 {
-	//use internal 16M oscillator, HSI
+		//use internal 16M oscillator, HSI
 		ui32SysClock = SysCtlClockFreqSet((SYSCTL_XTAL_16MHZ |SYSCTL_OSC_INT |SYSCTL_USE_OSC), 16000000);		
 		//S800_GPIO_Init();
 		//S800_I2C0_Init();
-		SysCtlPeripheralEnable(SYSCTL_PERIPH_GPION);						//Enable PortN
+		SysCtlPeripheralEnable(SYSCTL_PERIPH_GPION);				//Enable PortN
 		while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPION));			//Wait for the GPIO moduleN ready
 		
 		SysTickPeriodSet(ui32SysClock/SYSTICK_FREQUENCY);
@@ -193,9 +191,6 @@ int main(void)
 		GPIOPinTypeGPIOOutput(GPIO_PORTN_BASE, GPIO_PIN_0);			//Set PF0 as Output pin
 		
 		S800_I2C_Init(I2C_Enable_Mask);
-		//TCA6424_Config(0);
-		//PCA9557_Config(0);
-		//MPU9250_Config(0);
 		
 		HMC5983_Config(0);
 	
@@ -210,12 +205,11 @@ int main(void)
 		HMC5983_Config(7);
 		HMC5983_Config(8);
 		HMC5983_Config(9);
-		//GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0x1);
+	
 		S800_UART_Init();
+	
 		G_X=0;
-		
-
-		
+	
 		while (1)	{
 			
 			//display(mycnt);
@@ -257,65 +251,26 @@ int main(void)
 				UARTStringPut(numTrans);
 				MPU9250_Read(0);
 				UARTStringPut(numTrans);
-				/*
-				
-				if(led_status)
-				{
-					GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0x0);
-					led_status = 0;
-				}
-				else{
-					GPIOPinWrite(GPIO_PORTN_BASE, GPIO_PIN_0, 0x1);
-					led_status = 1;
-				}
-				*/
 			}
-			/*
-			Delay(500000);
-			HMC5983_Read(0);
-			UARTStringPut(numTrans);
-			HMC5983_Read(1);
-			UARTStringPut(numTrans);
-			HMC5983_Read(2);
-			UARTStringPut(numTrans);
-			HMC5983_Read(3);
-			UARTStringPut(numTrans); 
-			HMC5983_Read(4);
-			UARTStringPut(numTrans);
-			HMC5983_Read(5);
-			UARTStringPut(numTrans);
-			HMC5983_Read(6);
-			UARTStringPut(numTrans);
-			HMC5983_Read(7);
-			UARTStringPut(numTrans);
-			HMC5983_Read(8);
-			UARTStringPut(numTrans);
-			HMC5983_Read(9);
-			UARTStringPut(numTrans);
-			*/
-			
-			//buf[8] = I2C_ReadByte(5,0x1E,0x0a);
-			//buf[8] = I2C_ReadByte(0,GYRO_ADDRESS,WHO_AM_I);
-			//I2C_WriteByte(0,PCA9557_I2CADDR,PCA9557_OUTPUT,~buf[8]);
 		}
 }
 
 void SysTick_Handler(void)
 {
-	if (systick_myfreq_couter	!= 0)
+	if (systick_myfreq_couter != 0)
 		systick_myfreq_couter--;
 	else
 	{
-		systick_myfreq_couter	= SYSTICK_FREQUENCY/MY_FREQUENCY;
-		systick_myfreq_status 	= 1;
+		systick_myfreq_couter = SYSTICK_FREQUENCY/MY_FREQUENCY;
+		systick_myfreq_status = 1;
 	}
 	
 	if (systick_10ms_couter	!= 0)
 		systick_10ms_couter--;
 	else
 	{
-		systick_10ms_couter		= SYSTICK_FREQUENCY/100;
-		systick_10ms_status 	= 1;
+		systick_10ms_couter = SYSTICK_FREQUENCY/100;
+		systick_10ms_status = 1;
 	}		
 }
 
@@ -325,7 +280,7 @@ void HMC5983_Config(int I2C_Num)
 	Delay(160000);
 	I2C_WriteByte(I2C_Num,HMC5983_ADDRESS,HMC5983_CONFIG_B,0x00);	//Gain=2,
 	Delay(160000);
-	//I2C_WriteByte(I2C_Num,HMC5983_ADDRESS,HMC5983_MODE,0x00);			//Continuous measurement mode
+	//I2C_WriteByte(I2C_Num,HMC5983_ADDRESS,HMC5983_MODE,0x00);	//Continuous measurement mode
 }
 
 void HMC5983_Read(int I2C_Num)
@@ -419,24 +374,19 @@ void Read_Accel(int I2C_Num)
 {
 	buf[0]=I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,ACCEL_XOUT_L);
 	buf[1]=I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,ACCEL_XOUT_H);
-	//buf[0]=I2C0_ReadByte(ACCEL_ADDRESS,ACCEL_XOUT_L);
-	//buf[1]=I2C0_ReadByte(ACCEL_ADDRESS,ACCEL_XOUT_H);
 	A_X = (buf[1]<<8)|buf[0];
 	A_X /= 164;
 	
 	buf[2]=I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,ACCEL_YOUT_L);
 	buf[3]=I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,ACCEL_YOUT_H);
-	//buf[2]=I2C0_ReadByte(ACCEL_ADDRESS,ACCEL_YOUT_L);
-	//buf[3]=I2C0_ReadByte(ACCEL_ADDRESS,ACCEL_YOUT_H);
 	A_Y = (buf[3]<<8)|buf[2];
 	A_Y /= 164;
 	
 	buf[4]=I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,ACCEL_ZOUT_L);
 	buf[5]=I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,ACCEL_ZOUT_H);
-	//buf[4]=I2C0_ReadByte(ACCEL_ADDRESS,ACCEL_ZOUT_L);
-	//buf[5]=I2C0_ReadByte(ACCEL_ADDRESS,ACCEL_ZOUT_H);
 	A_Z = (buf[5]<<8)|buf[4];
 	A_Z /= 164;
+	
 	buf[7] = I2C_ReadByte(I2C_Num,ACCEL_ADDRESS,WHO_AM_I);
 }
 
@@ -444,37 +394,28 @@ void Read_Gyro(int I2C_Num)
 {
 	buf[0]=I2C_ReadByte(I2C_Num,GYRO_ADDRESS,GYRO_XOUT_L);
 	buf[1]=I2C_ReadByte(I2C_Num,GYRO_ADDRESS,GYRO_XOUT_H);
-	//buf[0]=I2C0_ReadByte(GYRO_ADDRESS,GYRO_XOUT_L);
-	//buf[1]=I2C0_ReadByte(GYRO_ADDRESS,GYRO_XOUT_H);
 	G_X = (buf[1]<<8)|buf[0];
 	G_X /= 16.4;
 	
 	buf[2]=I2C_ReadByte(I2C_Num,GYRO_ADDRESS,GYRO_YOUT_L);
 	buf[3]=I2C_ReadByte(I2C_Num,GYRO_ADDRESS,GYRO_YOUT_H);
-	//buf[2]=I2C0_ReadByte(GYRO_ADDRESS,GYRO_YOUT_L);
-	//buf[3]=I2C0_ReadByte(GYRO_ADDRESS,GYRO_YOUT_H);
 	G_Y = (buf[3]<<8)|buf[2];
 	G_Y /= 16.4;
 	
 	buf[4]=I2C_ReadByte(I2C_Num,GYRO_ADDRESS,GYRO_ZOUT_L);
 	buf[5]=I2C_ReadByte(I2C_Num,GYRO_ADDRESS,GYRO_ZOUT_H);
-	//buf[4]=I2C0_ReadByte(GYRO_ADDRESS,GYRO_ZOUT_L);
-	//buf[5]=I2C0_ReadByte(GYRO_ADDRESS,GYRO_ZOUT_H);
 	G_Z = (buf[5]<<8)|buf[4];
 	G_Z /= 16.4;
-	
 }
 
 void Read_Mag(int I2C_Num)
 {
 	I2C_WriteByte(I2C_Num,GYRO_ADDRESS,0x37,0x02);//turn on bypass
-	//I2C0_WriteByte(GYRO_ADDRESS,0x37,0x02);//turn on bypass
-	//Delay(150000);//delay 10ms
 	Delay(10000);
+	
 	I2C_WriteByte(I2C_Num,MAG_ADDRESS,0x0A,0x11);
-	//I2C0_WriteByte(MAG_ADDRESS,0x0A,0x11);//single measurement mode,16bit
-	//Delay(150000);//delay 10ms
 	Delay(100000);
+	
 	buf[8]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,0x00);
 	buf[0]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,MAG_XOUT_L);
 	buf[1]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,MAG_XOUT_H);
@@ -482,14 +423,10 @@ void Read_Mag(int I2C_Num)
 	
 	buf[2]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,MAG_YOUT_L);
 	buf[3]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,MAG_YOUT_H);
-	//buf[2]=I2C0_ReadByte(MAG_ADDRESS,MAG_YOUT_L);
-	//buf[3]=I2C0_ReadByte(MAG_ADDRESS,MAG_YOUT_H);
 	M_Y = (buf[3]<<8)|buf[2];
 	
 	buf[4]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,MAG_ZOUT_L);
 	buf[5]=I2C_ReadByte(I2C_Num,MAG_ADDRESS,MAG_ZOUT_H);
-	//buf[4]=I2C0_ReadByte(MAG_ADDRESS,MAG_ZOUT_L);
-	//buf[5]=I2C0_ReadByte(MAG_ADDRESS,MAG_ZOUT_H);
 	M_Z = (buf[5]<<8)|buf[4];
 }
 
@@ -512,13 +449,13 @@ void Delay(uint32_t value)
 
 void S800_GPIO_Init(void)
 {
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);						//Enable PortF
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF);				//Enable PortF
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF));			//Wait for the GPIO moduleF ready
-	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ);						//Enable PortJ	
+	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOJ);				//Enable PortJ	
 	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOJ));			//Wait for the GPIO moduleJ ready	
 	
-  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0);							//Set PF0 as Output pin
-	GPIOPinTypeGPIOInput(GPIO_PORTJ_BASE,GPIO_PIN_0 | GPIO_PIN_1);	//Set the PJ0,PJ1 as input pin
+  	GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0);			//Set PF0 as Output pin
+	GPIOPinTypeGPIOInput(GPIO_PORTJ_BASE,GPIO_PIN_0 | GPIO_PIN_1);		//Set the PJ0,PJ1 as input pin
 	GPIOPadConfigSet(GPIO_PORTJ_BASE,GPIO_PIN_0 | GPIO_PIN_1,GPIO_STRENGTH_2MA,GPIO_PIN_TYPE_STD_WPU);
 }
 
@@ -757,24 +694,24 @@ uint8_t I2C_WriteByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr, uint8_t Wri
 		case 8: I2C_base=I2C8_BASE;break;
 		case 9: I2C_base=I2C9_BASE;break;
 	}
-	while(I2CMasterBusy(I2C_base));								// Wait if I2C0 master is busy
+	while(I2CMasterBusy(I2C_base));					// Wait if I2C master is busy
 		
-	I2CMasterSlaveAddrSet(I2C_base, DevAddr, false); // Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)		
-	I2CMasterDataPut(I2C_base, RegAddr);							// Set the data (the command of the expender chip) to be sent
+	I2CMasterSlaveAddrSet(I2C_base, DevAddr, false);		// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)		
+	I2CMasterDataPut(I2C_base, RegAddr);				// Set the data (the command of the expender chip) to be sent
 	I2CMasterControl(I2C_base, I2C_MASTER_CMD_BURST_SEND_START);	// Start the transmission and send multiple bytes
-	while(I2CMasterBusy(I2C_base));								// Wait if I2C0 master is busy
+	while(I2CMasterBusy(I2C_base));					// Wait if I2C master is busy
 	Delay(10);	
-	rop = (uint8_t)I2CMasterErr(I2C_base);						// if there is error in the transmission, terminate the transmission
+	rop = (uint8_t)I2CMasterErr(I2C_base);				// if there is error in the transmission, terminate the transmission
 	if(rop) {
 		I2CMasterControl(I2C_base, I2C_MASTER_CMD_BURST_SEND_STOP);
 		return rop;
 	}
 	Delay(10);
-	I2CMasterDataPut(I2C_base, WriteData);						// Set the data (the data to the register specified by the above command) to be sent
-	I2CMasterControl(I2C_base, I2C_MASTER_CMD_BURST_SEND_FINISH);// send the second byte and terminate the transmission when finished
-	while(I2CMasterBusy(I2C_base));								// Wait if I2C0 master is busy
+	I2CMasterDataPut(I2C_base, WriteData);				// Set the data (the data to the register specified by the above command) to be sent
+	I2CMasterControl(I2C_base, I2C_MASTER_CMD_BURST_SEND_FINISH);	// send the second byte and terminate the transmission when finished
+	while(I2CMasterBusy(I2C_base));					// Wait if I2C master is busy
 	Delay(10);
-	rop = (uint8_t)I2CMasterErr(I2C_base);						// if there is error in the transmission, return the error status
+	rop = (uint8_t)I2CMasterErr(I2C_base);				// if there is error in the transmission, return the error status
 	if(rop) {
 		I2CMasterControl(I2C_base, I2C_MASTER_CMD_BURST_SEND_STOP);
 		return rop;
@@ -799,12 +736,12 @@ uint8_t I2C_ReadByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr)
 		case 8: I2C_base=I2C8_BASE;break;
 		case 9: I2C_base=I2C9_BASE;break;
 	}
-	while(I2CMasterBusy(I2C_base));								// Wait if I2C0 master is busy
+	while(I2CMasterBusy(I2C_base));				// Wait if I2C master is busy
 
 	I2CMasterSlaveAddrSet(I2C_base, DevAddr, false);	// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)	
-	I2CMasterDataPut(I2C_base, RegAddr);							// Set the data (the command of the expender chip) to be sent
+	I2CMasterDataPut(I2C_base, RegAddr);			// Set the data (the command of the expender chip) to be sent
 	I2CMasterControl(I2C_base,I2C_MASTER_CMD_SINGLE_SEND);	// Start the transmission and send one byte
-	while(I2CMasterBusBusy(I2C_base));								// Wait if I2C0 master is busy
+	while(I2CMasterBusBusy(I2C_base));			// Wait if I2C master is busy
 	Delay(200);
 	rop = (uint8_t)I2CMasterErr(I2C_base);
 	if(rop) {																					// if there is error in the transmission, return the error status
@@ -812,13 +749,13 @@ uint8_t I2C_ReadByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr)
 	}
 	Delay(10);
 
-	I2CMasterSlaveAddrSet(I2C_base, DevAddr, true);	// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)	
-	I2CMasterControl(I2C_base,I2C_MASTER_CMD_SINGLE_RECEIVE);// Start the transmission and read one byte
-	while(I2CMasterBusBusy(I2C_base));								// Wait if I2C0 master is busy
+	I2CMasterSlaveAddrSet(I2C_base, DevAddr, true);			// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)	
+	I2CMasterControl(I2C_base,I2C_MASTER_CMD_SINGLE_RECEIVE);	// Start the transmission and read one byte
+	while(I2CMasterBusBusy(I2C_base));				// Wait if I2C master is busy
 	//here need to delay!
 	//Delay(1000);
 	Delay(300);
-	value=I2CMasterDataGet(I2C_base);								// Get the data from the data register of the master
+	value=I2CMasterDataGet(I2C_base);				// Get the data from the data register of the master
 	//Delay(1000);
 	return value;
 }
@@ -843,7 +780,7 @@ uint8_t I2C_ReadWriteByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr,bool rw,
 		case 9: I2C_base=I2C9_BASE;break;
 	}
 	
-	while(I2CMasterBusy(I2C_base));								// Wait if I2C master is busy
+	while(I2CMasterBusy(I2C_base));// Wait if I2C master is busy
 	
 	// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)
 	
@@ -868,7 +805,7 @@ uint8_t I2C_ReadWriteByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr,bool rw,
 		//I2CMasterControl(I2C_base, I2C_MASTER_CMD_SINGLE_SEND);
 		
 	}
-	while(I2CMasterBusBusy(I2C_base));								// Wait if I2C master is busy
+	while(I2CMasterBusBusy(I2C_base));// Wait if I2C master is busy
 	//Delay(200);
 	rop = (uint8_t)I2CMasterErr(I2C_base);
 	if(rop) {																					// if there is error in the transmission, return the error status
@@ -885,9 +822,9 @@ uint8_t I2C_ReadWriteByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr,bool rw,
 		I2CMasterDataPut(I2C_base, WriteData);
 		// send the second byte and terminate the transmission when finished
 		I2CMasterControl(I2C_base, I2C_MASTER_CMD_BURST_SEND_FINISH);
-		while(I2CMasterBusy(I2C_base));								// Wait if I2C0 master is busy
+		while(I2CMasterBusy(I2C_base));			// Wait if I2C master is busy
 
-		rop = (uint8_t)I2CMasterErr(I2C_base);						// if there is error in the transmission, return the error status
+		rop = (uint8_t)I2CMasterErr(I2C_base);		// if there is error in the transmission, return the error status
 		return rop;
 	}
 	else
@@ -895,10 +832,10 @@ uint8_t I2C_ReadWriteByte(int I2C_Num, uint8_t DevAddr, uint8_t RegAddr,bool rw,
 		//if ReadByte
 		I2CMasterSlaveAddrSet(I2C_base, DevAddr, true);	// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)	
 		I2CMasterControl(I2C_base,I2C_MASTER_CMD_SINGLE_RECEIVE);// Start the transmission and read one byte
-		while(I2CMasterBusBusy(I2C_base));								// Wait if I2C0 master is busy
+		while(I2CMasterBusBusy(I2C_base));	// Wait if I2C0 master is busy
 		//here need to delay!
 		Delay(2000);
-		value=I2CMasterDataGet(I2C_base);								// Get the data from the data register of the master
+		value=I2CMasterDataGet(I2C_base);	// Get the data from the data register of the master
 		Delay(1);
 		return value;
 	}
@@ -916,16 +853,16 @@ void UARTStringPut(const char *cMessage)
 void S800_UART_Init(void)
 {
 	SysCtlPeripheralEnable(SYSCTL_PERIPH_UART2);
-  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);						//Enable PortA
-	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOD));			//Wait for the GPIO moduleA ready
+  	SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOD);		//Enable PortA
+	while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOD));	//Wait for the GPIO moduleA ready
 
-	GPIOPinConfigure(GPIO_PD4_U2RX);												// Set GPIO A0 and A1 as UART pins.
-  GPIOPinConfigure(GPIO_PD5_U2TX);    			
+	GPIOPinConfigure(GPIO_PD4_U2RX);// Set GPIO A0 and A1 as UART pins.
+  	GPIOPinConfigure(GPIO_PD5_U2TX);
 
-  GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_4 | GPIO_PIN_5);
+  	GPIOPinTypeUART(GPIO_PORTD_BASE, GPIO_PIN_4 | GPIO_PIN_5);
 
 	// Configure the UART for 115,200, 8-N-1 operation.
-  UARTConfigSetExpClk(UART2_BASE, ui32SysClock,1500000,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |UART_CONFIG_PAR_NONE));
+  	UARTConfigSetExpClk(UART2_BASE, ui32SysClock,1500000,(UART_CONFIG_WLEN_8 | UART_CONFIG_STOP_ONE |UART_CONFIG_PAR_NONE));
 	UARTStringPut((uint8_t *)"\r\nHello, world!\r\n");
 }
 
@@ -942,84 +879,4 @@ void PCA9557_Config(int I2C_Num)
 {
 	I2C_WriteByte(I2C_Num,PCA9557_I2CADDR,PCA9557_CONFIG,0x00);//config the port of PCA9557 as output
 	I2C_WriteByte(I2C_Num,PCA9557_I2CADDR,PCA9557_OUTPUT,0xff);//turn off LED1~8
-}
-
-void S800_I2C0_Init(void)
-{
-  SysCtlPeripheralEnable(SYSCTL_PERIPH_I2C0);			// Provide clock to enable I2C0
-  SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOB);		// I2C0 uses pin PB2 and PB3, which by default are used as GPIO. We need to program to change the use of PB2 and PB3
-	GPIOPinConfigure(GPIO_PB2_I2C0SCL);							// Program on GPIOPCTL to select I2C0 SCL to be connected to PB2
-  GPIOPinConfigure(GPIO_PB3_I2C0SDA);							// Program on GPIOPCTL to select I2C0 SDA to be connected to PB3
-  GPIOPinTypeI2CSCL(GPIO_PORTB_BASE, GPIO_PIN_2);	// Program on GPIOAFSEL to swith PB2 to be used by hardware and program the pad control of this pin for this
-  GPIOPinTypeI2C(GPIO_PORTB_BASE, GPIO_PIN_3);		// Program on GPIOAFSEL to swith PB3 to be used by hardware and program the pad control of this pin for this
-
-	I2CMasterInitExpClk(I2C0_BASE,ui32SysClock, true);						//enable I2C0 master, the input clock for I2C0 is the system clock and set I2C0 to run in fast mode (400kbps) or normal mode
-
-	I2C0_WriteByte(TCA6424_I2CADDR,TCA6424_CONFIG_PORT0,0x0ff);		//config port0 of TCA6424 as input
-	I2C0_WriteByte(TCA6424_I2CADDR,TCA6424_CONFIG_PORT1,0x0);			//config port1 of TCA6424 as output
-	I2C0_WriteByte(TCA6424_I2CADDR,TCA6424_CONFIG_PORT2,0x0);			//config port2 of TCA6424 as output
-
-	I2C0_WriteByte(TCA6424_I2CADDR,TCA6424_OUTPUT_PORT2,0xff);		//Select all digits
-	I2C0_WriteByte(TCA6424_I2CADDR,TCA6424_OUTPUT_PORT1,0x0);			//Turn off all LED tubes
-	
-
-
-	I2C0_WriteByte(PCA9557_I2CADDR,PCA9557_CONFIG,0x0);						//config the port of PCA9557 as output
-	I2C0_WriteByte(PCA9557_I2CADDR,PCA9557_OUTPUT,0xff);					//turn off the LED1-8
-	
-	//---------
-	I2C0_WriteByte(GYRO_ADDRESS,PWR_MGMT_1,0x00);
-	I2C0_WriteByte(GYRO_ADDRESS,SMPLRT_DIV,0x07);
-	I2C0_WriteByte(GYRO_ADDRESS,CONFIG,0x06);
-	I2C0_WriteByte(GYRO_ADDRESS,GYRO_CONFIG,0x18);
-	I2C0_WriteByte(GYRO_ADDRESS,ACCEL_CONFIG,0x01);
-}
-
-uint8_t I2C0_WriteByte(uint8_t DevAddr, uint8_t RegAddr, uint8_t WriteData)
-{
-	uint8_t rop;
-	while(I2CMasterBusy(I2C0_BASE));								// Wait if I2C0 master is busy
-		
-	I2CMasterSlaveAddrSet(I2C0_BASE, DevAddr, false); // Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)		
-	I2CMasterDataPut(I2C0_BASE, RegAddr);							// Set the data (the command of the expender chip) to be sent
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_START);	// Start the transmission and send multiple bytes
-	while(I2CMasterBusy(I2C0_BASE));								// Wait if I2C0 master is busy
-		
-	rop = (uint8_t)I2CMasterErr(I2C0_BASE);						// if there is error in the transmission, terminate the transmission
-	if(rop) {
-		I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_STOP);
-		return rop;
-	}
-
-	I2CMasterDataPut(I2C0_BASE, WriteData);						// Set the data (the data to the register specified by the above command) to be sent
-	I2CMasterControl(I2C0_BASE, I2C_MASTER_CMD_BURST_SEND_FINISH);// send the second byte and terminate the transmission when finished
-	while(I2CMasterBusy(I2C0_BASE));								// Wait if I2C0 master is busy
-
-	rop = (uint8_t)I2CMasterErr(I2C0_BASE);						// if there is error in the transmission, return the error status
-	return rop;
-}
-
-uint8_t I2C0_ReadByte(uint8_t DevAddr, uint8_t RegAddr)
-{
-	uint8_t value,rop;
-	while(I2CMasterBusy(I2C0_BASE));								// Wait if I2C0 master is busy
-
-	I2CMasterSlaveAddrSet(I2C0_BASE, DevAddr, false);	// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)	
-	I2CMasterDataPut(I2C0_BASE, RegAddr);							// Set the data (the command of the expender chip) to be sent
-	I2CMasterControl(I2C0_BASE,I2C_MASTER_CMD_SINGLE_SEND);	// Start the transmission and send one byte
-	while(I2CMasterBusBusy(I2C0_BASE));								// Wait if I2C0 master is busy
-	rop = (uint8_t)I2CMasterErr(I2C0_BASE);
-	if(rop) {																					// if there is error in the transmission, return the error status
-		return rop;
-	}
-	Delay(1);
-
-	I2CMasterSlaveAddrSet(I2C0_BASE, DevAddr, true);	// Set the slave address in the master and indicate the direction of the following transmission (false means send, true means read)	
-	I2CMasterControl(I2C0_BASE,I2C_MASTER_CMD_SINGLE_RECEIVE);// Start the transmission and read one byte
-	while(I2CMasterBusBusy(I2C0_BASE));								// Wait if I2C0 master is busy
-	//here need to delay!
-	Delay(200);
-	value=I2CMasterDataGet(I2C0_BASE);								// Get the data from the data register of the master
-	Delay(1);
-	return value;
 }
